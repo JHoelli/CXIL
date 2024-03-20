@@ -153,18 +153,6 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-#/CXIL/Data/data/*
-#/CXIL/Data/data/*.gz
-#/CXIL/Data/data/*.npy
-#/CXIL/Data/data/clevr_xai/*
-#/CXIL/Data/data/Interpretable_Surrogates/*
-#/CXIL/Data/data/simulated_tabular/* 
-#/CXIL/Data/data/split-decoy-mnist/*
-#/CXIL/Data/data/split-mnist/*.gz
-#/CXIL/Data/data/split-mnist/*
-#/CXIL/Data/data/TimeSeries/*
-#/CXIL/Data/data/decoy-mnist/*.gz
-#/CXIL/Data/Voith_Data_Interface.py
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
