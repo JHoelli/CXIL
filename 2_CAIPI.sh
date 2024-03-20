@@ -1,0 +1,10 @@
+python 2_Class_Incremental_CAIPI_Experiments.py $1 $1 SimpleMLP MeanAndStdTransformer 18
+python 2_Class_Incremental_CAIPI_Experiments.py $1 $1 SimpleMLP MeanAndStdTransformer 20
+python 2_Class_Incremental_CAIPI_Experiments.py $1 $1 SimpleMLP MeanAndStdTransformer 12
+python 2_Class_Incremental_CAIPI_Experiments.py $1 $1 SimpleMLP MeanAndStdTransformer 61
+python 2_Class_Incremental_CAIPI_Experiments.py $1 $1 SimpleMLP MeanAndStdTransformer 22
+python 2_Class_Incremental_CAIPI_Experiments.py $1 $1 SimpleMLP MeanAndStdTransformer 65
+python 2_Class_Incremental_CAIPI_Experiments.py $1 $1 SimpleMLP MeanAndStdTransformer 21
+python 2_Class_Incremental_CAIPI_Experiments.py $1 $1 SimpleMLP MeanAndStdTransformer 14
+python 2_Class_Incremental_CAIPI_Experiments.py $1 $1 SimpleMLP MeanAndStdTransformer 94
+python 2_Class_Incremental_CAIPI_Experiments.py $1 $1 SimpleMLP MeanAndStdTransformer 11

@@ -1,0 +1,10 @@
+python 2_Class_Incremental_Sanity_Experiments.py $1 $1 SimpleMLP 18
+python 2_Class_Incremental_Sanity_Experiments.py $1 $1 SimpleMLP 20
+python 2_Class_Incremental_Sanity_Experiments.py $1 $1 SimpleMLP 12
+python 2_Class_Incremental_Sanity_Experiments.py $1 $1 SimpleMLP 61
+python 2_Class_Incremental_Sanity_Experiments.py $1 $1 SimpleMLP 22
+python 2_Class_Incremental_Sanity_Experiments.py $1 $1 SimpleMLP 65
+python 2_Class_Incremental_Sanity_Experiments.py $1 $1 SimpleMLP 21
+python 2_Class_Incremental_Sanity_Experiments.py $1 $1 SimpleMLP 14
+python 2_Class_Incremental_Sanity_Experiments.py $1 $1 SimpleMLP 94
+python 2_Class_Incremental_Sanity_Experiments.py $1 $1 SimpleMLP 11
