@@ -10,7 +10,7 @@ pip install .
 ```
 
 ## Usage 
-The Basic Usage of CXIL can be found in  this (notebook)[].
+The Basic Usage of CXIL can be found in  this [notebook](https://github.com/JHoelli/CXIL/blob/main/0_Usage.ipynb).
 
 
 ## Rerun the Experiments
