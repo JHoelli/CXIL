@@ -15,4 +15,6 @@ pip install .
 To replicate the paper results, please follow the three steps below. 
 ### Generate the Data 
 ### Run the Experiments
+Run the bash Scripts: 
+
 ### Evaluate 

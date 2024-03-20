@@ -16,9 +16,9 @@ import setuptools
 NAME = "CXIL"
 DESCRIPTION = "todo"
 LONG_DESCRIPTION_CONTENT_TYPE = "text/markdown"
-URL = "https://github.com/JHoelli/CXIL.git"
-EMAIL = "hoellig@fzi.de"
-AUTHOR = "Jacqueline Hoellig"
+URL = ""
+EMAIL = ""
+AUTHOR = ""
 REQUIRES_PYTHON = ">=3.6.0"
 
 
