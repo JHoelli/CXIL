@@ -158,7 +158,7 @@ cython_debug/
 /CXIL/Data/data/*.npy
 /CXIL/Data/data/clevr_xai/*
 /CXIL/Data/data/Interpretable_Surrogates/*
-/CXIL/Data/data/simulated_tabular/* 
+#/CXIL/Data/data/simulated_tabular/* 
 /CXIL/Data/data/split-decoy-mnist/*
 /CXIL/Data/data/split-mnist/*.gz
 /CXIL/Data/data/split-mnist/*
