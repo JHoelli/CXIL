@@ -579,7 +579,7 @@ def split_decoy_mnist():
     '''
     Loads Decoy MNIST according to Ross et al. and Teso et al., split into tasks of 2 consecquitive digits.
     '''
-    with np.load('./XIL/Data/data/split-decoy-mnist/split-decoy-mnist.npz') as data:
+    with np.load('./CXIL/Data/data/split-decoy-mnist/split-decoy-mnist.npz') as data:
         X_0=data['arr_0']
         y_0=data['arr_1']
         X_1=data['arr_2']
@@ -612,7 +612,7 @@ def split_mnist(balance=True, num_items_to_use=None, normelize=True):
     '''
     Loads Split MNIST. Beaware that this can only be used as a Sanity Check for the Continous Learner as the simulation rune is missing. 
     '''
-    with np.load('./XIL/Data/data/split-mnist/split-mnist.npz') as data:
+    with np.load('./CXIL/Data/data/split-mnist/split-mnist.npz') as data:
         X_0=data['arr_0']
         y_0=data['arr_1']
         X_1=data['arr_2']
@@ -667,12 +667,12 @@ def unsplit_mnist():
     IS THIS IN CORRESPONDANCE WITH : https://arxiv.org/pdf/1904.07734.pdf
     TODO Do Format as Intended
     '''
-    datadir = './XIL/Data/data/split-mnist'
+    datadir = './CXIL/Data/data/split-mnist'
     train_images = parse_images(os.path.join(datadir, 'train-images-idx3-ubyte.gz'))
     train_labels = parse_labels(os.path.join(datadir, 'train-labels-idx1-ubyte.gz'))
     test_images  = parse_images(os.path.join(datadir, 't10k-images-idx3-ubyte.gz'))
     test_labels  = parse_labels(os.path.join(datadir, 't10k-labels-idx1-ubyte.gz'))#
-    with np.load('./XIL/Data/data/split-mnist/split-mnist.npz') as data:
+    with np.load('./CXIL/Data/data/split-mnist/split-mnist.npz') as data:
         X_0=data['arr_0']
         y_0=data['arr_1']
         X_1=data['arr_2']
@@ -703,12 +703,12 @@ def mnist():
     IS THIS IN CORRESPONDANCE WITH : https://arxiv.org/pdf/1904.07734.pdf
     TODO Do Format as Intended
     '''
-    datadir = './XIL/Data/data/decoy-mnist'
+    datadir = './CXIL/Data/data/decoy-mnist'
     train_images = parse_images(os.path.join(datadir, 'train-images-idx3-ubyte.gz'))
     train_labels = parse_labels(os.path.join(datadir, 'train-labels-idx1-ubyte.gz'))
     test_images  = parse_images(os.path.join(datadir, 't10k-images-idx3-ubyte.gz'))
     test_labels  = parse_labels(os.path.join(datadir, 't10k-labels-idx1-ubyte.gz'))#
-    with np.load('./XIL/Data/data/decoy-mnist/decoy-mnist.npz') as data:
+    with np.load('./CXIL/Data/data/decoy-mnist/decoy-mnist.npz') as data:
         X_0=data['arr_0']
         y_0=data['arr_1']
         X_1=data['arr_2']
@@ -753,7 +753,7 @@ def split_mnist_binary():
     IS THIS IN CORRESPONDANCE WITH : https://arxiv.org/pdf/1904.07734.pdf
     TODO Do Format as Intended
     '''
-    with np.load('./XIL/Data/data/split-mnist/split-mnist.npz') as data:
+    with np.load('./CXIL/Data/data/split-mnist/split-mnist.npz') as data:
         X_0=data['arr_0']
         y_0=data['arr_1']
         y_0[y_0==0]=0
@@ -813,7 +813,7 @@ def split_decoy_mnist_binary():
     IS THIS IN CORRESPONDANCE WITH : https://arxiv.org/pdf/1904.07734.pdf
     TODO Do Format as Intended
     '''
-    with np.load('./XIL/Data/data/split-decoy-mnist/split-decoy-mnist.npz') as data:
+    with np.load('./CXIL/Data/data/split-decoy-mnist/split-decoy-mnist.npz') as data:
         X_0=data['arr_0']
         y_0=data['arr_1']
         y_0[y_0==0]=0
@@ -887,16 +887,16 @@ def decoy_mnist(root):
     return   X_train,y_train,X_test,y_test, Xt, yt,decoy_mnist_rule((np.concatenate([X,Xt]),np.concatenate([y,yt])))
 
 def clevr_xai():
-    if not os.path.isdir('./XIL/Data/data/clevr_xai'):
-        os.mkdir('./XIL/Data/data/clevr_xai')#
+    if not os.path.isdir('./CXIL/Data/data/clevr_xai'):
+        os.mkdir('./CXIL/Data/data/clevr_xai')#
         zipurl='https://github.com/ahmedmagdiosman/clevr-xai/releases/download/v1.0/CLEVR-XAI_v1.0.zip'
         with urlopen(zipurl) as zipresp:
             with ZipFile(BytesIO(zipresp.read())) as zfile:
-                zfile.extractall('./XIL/Data/data/clevr_xai')
+                zfile.extractall('./CXIL/Data/data/clevr_xai')
         zipurl='https://github.com/ahmedmagdiosman/clevr-xai/releases/download/v1.0/CLEVR-XAI_v1.0_images_masks.zip'
         with urlopen(zipurl) as zipresp:
             with ZipFile(BytesIO(zipresp.read())) as zfile:
-                zfile.extractall('./XIL/Data/data/clevr_xai')
+                zfile.extractall('./CXIL/Data/data/clevr_xai')
 
     # LOAD IMAGES
     # LOAD MASKS
@@ -972,7 +972,7 @@ class iris_simulate(simulation):
         return masks
     
 def iris_cancer():
-    path= './XIL/Data/data'
+    path= './CXIL/Data/data'
     X=np.load(f'{path}/Iris_Cancer_X.npy')
     Xt=np.load(f'{path}/Iris_Cancer_X_test.npy')
     y=np.load(f'{path}/Iris_Cancer_y.npy')
@@ -985,7 +985,7 @@ def load_lego(root, taskwise=True):
     '''
     Inspired by https://github.com/tmdt-buw/continual-learning-mas-cloning-injection-molding/blob/main/sequence_experiments.py
     '''
-    # XIL/Data/data/Lego_Injection_Modeling/injection_molding_lego_data_full.csv
+    # CXIL/Data/data/Lego_Injection_Modeling/injection_molding_lego_data_full.csv
     csv_path = f'{root}/Data/data/Lego_Injection_Modeling/injection_molding_lego_data_full.csv'
     csv_sep = ';'
 
@@ -1154,29 +1154,29 @@ def synthetic_tabular_classification(n_samples=10000, n_features=15, n_informati
     The algorithm is adapted from Guyon [1] and was designed to generate the "Madelon" dataset.
 
     '''
-    if not os.path.isdir(f'./XIL/Data/data/simulated_tabular/{n_features}_{n_informative}_{n_redundant}_{n_classes}_train_x.npy'):
+    if not os.path.isdir(f'./CXIL/Data/data/simulated_tabular/{n_features}_{n_informative}_{n_redundant}_{n_classes}_train_x.npy'):
 
         X,y= make_classification(n_samples=n_samples, n_features=n_features, n_informative=n_informative, n_redundant=n_redundant,n_classes=n_classes,shuffle=False,flip_y=flip_y, **kwargs)
         X_train_full, X_test, y_train_full, y_test=train_test_split(X,y,random_state=0)
-        with open(f'./XIL/Data/data/simulated_tabular/{n_features}_{n_informative}_{n_redundant}_{n_classes}_{flip_y}_train_x.npy', 'wb') as f:
+        with open(f'./CXIL/Data/data/simulated_tabular/{n_features}_{n_informative}_{n_redundant}_{n_classes}_{flip_y}_train_x.npy', 'wb') as f:
             np.save(f,X_train_full)
 
-        with open(f'./XIL/Data/data/simulated_tabular/{n_features}_{n_informative}_{n_redundant}_{n_classes}_{flip_y}_train_y.npy', 'wb') as f:
+        with open(f'./CXIL/Data/data/simulated_tabular/{n_features}_{n_informative}_{n_redundant}_{n_classes}_{flip_y}_train_y.npy', 'wb') as f:
             np.save(f,y_train_full)
 
-        with open(f'./XIL/Data/data/simulated_tabular/{n_features}_{n_informative}_{n_redundant}_{n_classes}_{flip_y}_test_x.npy', 'wb') as f:
+        with open(f'./CXIL/Data/data/simulated_tabular/{n_features}_{n_informative}_{n_redundant}_{n_classes}_{flip_y}_test_x.npy', 'wb') as f:
             np.save(f,X_test)
             
-        with open(f'./XIL/Data/data/simulated_tabular/{n_features}_{n_informative}_{n_redundant}_{n_classes}_{flip_y}_test_y.npy', 'wb') as f:
+        with open(f'./CXIL/Data/data/simulated_tabular/{n_features}_{n_informative}_{n_redundant}_{n_classes}_{flip_y}_test_y.npy', 'wb') as f:
             np.save(f,y_test)
 
 
     else: 
 
-        X_train_full=np.load (f'./XIL/Data/data/simulated_tabular/{n_features}_{n_informative}_{n_redundant}_{n_classes}_{flip_y}_train_x.npy')
-        y_train_full= np.load (f'./XIL/Data/data/simulated_tabular/{n_features}_{n_informative}_{n_redundant}_{n_classes}_{flip_y}_train_y.npy')
-        X_test=np.load (f'./XIL/Data/data/simulated_tabular/{n_features}_{n_informative}_{n_redundant}_{n_classes}_{flip_y}_test_x.npy')
-        y_test=np.load (f'./XIL/Data/data/simulated_tabular/{n_features}_{n_informative}_{n_redundant}_{n_classes}_{flip_y}_test_y.npy')
+        X_train_full=np.load (f'./CXIL/Data/data/simulated_tabular/{n_features}_{n_informative}_{n_redundant}_{n_classes}_{flip_y}_train_x.npy')
+        y_train_full= np.load (f'./CXIL/Data/data/simulated_tabular/{n_features}_{n_informative}_{n_redundant}_{n_classes}_{flip_y}_train_y.npy')
+        X_test=np.load (f'./CXIL/Data/data/simulated_tabular/{n_features}_{n_informative}_{n_redundant}_{n_classes}_{flip_y}_test_x.npy')
+        y_test=np.load (f'./CXIL/Data/data/simulated_tabular/{n_features}_{n_informative}_{n_redundant}_{n_classes}_{flip_y}_test_y.npy')
         print('UNIQUE LABELS', np.unique(y_test))
     X_f =np.concatenate((X_test,X_train_full))
     y_f =np.concatenate((y_test,y_train_full))
