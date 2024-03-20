@@ -3,10 +3,10 @@ import numpy as np
 from CXIL.Benchmarking.metrics.classification_metrics import  Classification_metrics
 from CXIL.Benchmarking.metrics.interpretation import  Interpretation_metrics
 from CXIL.caipi import utils, Transformer
-from Model import SmallModel, train_small
+from CXIL.Models.SimpleModel import SimpleMLP
 import torch.nn as nn
 from captum.attr import InputXGradient
-from avalanche.models import SimpleMLP
+#from avalanche.models import SimpleMLP 
 from CXIL.Learning import LearnerStep, Replay
 import warnings
 import matplotlib.pyplot as plt
@@ -14,7 +14,6 @@ import pandas as pd
 warnings.filterwarnings('ignore')
 from CXIL.Data.DataLoader import load_data_and_sim
 from CXIL.caipi import CAipi_without_TKadd as caipi
-from Evaluation_Script import evaluation
 
 dataset='toy_classification'
 '''Load Data '''
@@ -28,7 +27,7 @@ trans= Transformer.MeanAndStdTransformer(model_empty_train,num_samples=1)
 #learn=LearnerStep.BasicRRRLearner(model)
 learn = LearnerStep.Basic(model_empty_train)
 learn_replay=Replay.ReplayStrategyLearner(learn, num_classes=2,mem_size = 1000,batch_size= 64)
-int_train= caipi.caipi(model_empty_train,learn_replay,predict_func=model_empty_train,transformer=trans, evaluate_data= (X_test,y_test),silent=0)
+int_train= caipi.caipi(model_empty_train,learn_replay,transformer=trans, evaluate_data= (X_test,y_test),silent=0)
 
 
 int_train.iterate(X_with_finetuning)
