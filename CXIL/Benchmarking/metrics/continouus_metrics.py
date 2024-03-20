@@ -1,5 +1,5 @@
 #TODO ThIS IS OVERALL TODO 
-from XIL.Benchmarking.Evaluation import Evaluation
+from CXIL.Benchmarking.Evaluation import Evaluation
 from sklearn.metrics import  accuracy_score
 import numpy as np 
 import torch

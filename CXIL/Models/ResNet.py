@@ -66,11 +66,11 @@ def initialize_model(model_name, num_classes, feature_extract, use_pretrained=Tr
 
     elif model_name == "inception":
         """ Inception v3 
-        Be careful, expects (299,299) sized images and has auxiliary output
+        Be careful, expects (299,299) sized images and has auCXILiary output
         """
         model_ft = models.inception_v3(pretrained=use_pretrained)
         set_parameter_requires_grad(model_ft, feature_extract)
-        # Handle the auxilary net
+        # Handle the auCXILary net
         num_ftrs = model_ft.AuxLogits.fc.in_features
         model_ft.AuxLogits.fc = nn.Linear(num_ftrs, num_classes)
         # Handle the primary net
@@ -118,11 +118,11 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=25, is_ince
                 # track history if only in train
                 with torch.set_grad_enabled(phase == 'train'):
                     # Get model outputs and calculate loss
-                    # Special case for inception because in training it has an auxiliary output. In train
-                    #   mode we calculate the loss by summing the final output and the auxiliary output
+                    # Special case for inception because in training it has an auCXILiary output. In train
+                    #   mode we calculate the loss by summing the final output and the auCXILiary output
                     #   but in testing we only consider the final output.
                     if is_inception and phase == 'train':
-                        # From https://discuss.pytorch.org/t/how-to-optimize-inception-model-with-auxiliary-classifiers/7958
+                        # From https://discuss.pytorch.org/t/how-to-optimize-inception-model-with-auCXILiary-classifiers/7958
                         outputs, aux_outputs = model(inputs)
                         loss1 = criterion(outputs, labels)
                         loss2 = criterion(aux_outputs, labels)

@@ -1,4 +1,4 @@
-from XIL.Benchmarking.Evaluation import Evaluation
+from CXIL.Benchmarking.Evaluation import Evaluation
 from quantus import RelevanceRankAccuracy, RelevanceMassAccuracy,AUC
 import numpy as np
 import torch

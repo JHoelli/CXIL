@@ -1,4 +1,4 @@
-from XIL.Learning.SelectorStrategy import  RandomExemplarsSelector, HerdingExemplarsSelector
+from CXIL.Learning.SelectorStrategy import  RandomExemplarsSelector, HerdingExemplarsSelector
 import importlib
 from torch import nn
 from torch.utils.data import Dataset

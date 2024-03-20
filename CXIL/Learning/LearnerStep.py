@@ -7,7 +7,7 @@ import numpy as np
 import random
 from torch.utils.data import DataLoader
 from torch.utils.data import TensorDataset
-from XIL.Learning.StoragePolicies import ClassBalancedBuffer
+from CXIL.Learning.StoragePolicies import ClassBalancedBuffer
 
 from copy import deepcopy
 
@@ -16,7 +16,7 @@ from torch import nn
 from torch.nn import functional as F
 from torch.autograd import Variable
 import torch.utils.data
-from XIL.Learning.StoragePolicies import ReservoirSamplingBuffer
+from CXIL.Learning.StoragePolicies import ReservoirSamplingBuffer
 import time
 #global x_curr
 

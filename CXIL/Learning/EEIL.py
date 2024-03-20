@@ -5,7 +5,7 @@ from argparse import ArgumentParser
 from torch.nn import functional as F
 from torch.utils.data import DataLoader
 import torch.optim as optim
-from XIL.Learning.Datasets import MemoryDataset
+from CXIL.Learning.Datasets import MemoryDataset
 import numpy as np
 from torch import nn
 from torch.optim.lr_scheduler import StepLR

@@ -1,9 +1,9 @@
-from XIL.Learning.LearnerStep import Basic
+from CXIL.Learning.LearnerStep import Basic
 import torch
 import numpy as np
 from torch import nn
 import tqdm
-from XIL.Learning.StoragePolicies import ReservoirSamplingBuffer
+from CXIL.Learning.StoragePolicies import ReservoirSamplingBuffer
 import torch.nn.functional as F
 import torch.nn as nn
 from torch.autograd import Variable
@@ -12,7 +12,7 @@ import numpy as np
 import random
 from torch.utils.data import DataLoader
 from torch.utils.data import TensorDataset
-from XIL.Learning.StoragePolicies import ClassBalancedBuffer
+from CXIL.Learning.StoragePolicies import ClassBalancedBuffer
 
 from copy import deepcopy
 
@@ -21,8 +21,8 @@ from torch import nn
 from torch.nn import functional as F
 from torch.autograd import Variable
 import torch.utils.data
-from XIL.Learning.StoragePolicies import ReservoirSamplingBuffer
-from XIL.Learning.LearnerStep import Basic
+from CXIL.Learning.StoragePolicies import ReservoirSamplingBuffer
+from CXIL.Learning.LearnerStep import Basic
 import quadprog
 
 class GEM(Basic):

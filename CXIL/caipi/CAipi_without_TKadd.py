@@ -1,8 +1,8 @@
 #TODO orientate at scikit bzw river 
 from email.mime import image
-from XIL.caipi import utils, Transformer
+from CXIL.caipi import utils, Transformer
 import numpy as np 
-from XIL.caipi.utils import mod_wrapper
+from CXIL.caipi.utils import mod_wrapper
 from sklearn.metrics import precision_recall_fscore_support,classification_report
 from sklearn.metrics import precision_recall_fscore_support,classification_report, accuracy_score, f1_score , recall_score, precision_score,log_loss
 import matplotlib.pyplot as plt
@@ -10,14 +10,14 @@ from torch.utils.data import DataLoader
 from torch.utils.data import TensorDataset
 #from lime import lime_tabular
 from captum.attr import visualization as viz
-from XIL.XIL import XILInterface
+from CXIL.CXIL import CXILInterface
 import time
 
 import torch
 
 #TODO MAYBE Put SOme Stuff in Interface 
 from captum.attr import InputXGradient
-class caipi(XILInterface):
+class caipi(CXILInterface):
     def __init__(self, model,learn,gradient_method=InputXGradient,evaluate_data=(None,None), simulation_logic = None,silent=0, train_data=(None,None), transformer='', data_type = 'img') -> None:
         '''
         model: fit function
@@ -47,7 +47,7 @@ class caipi(XILInterface):
 
             return self.simulation_logic(x,np.argmax(y),exp)
         else: 
-            from XIL.Interactive.BasicUi  import MainWindow   
+            from CXIL.Interactive.BasicUi  import MainWindow   
             import sys 
             from PySide2.QtWidgets import QApplication
             if not QApplication.instance():

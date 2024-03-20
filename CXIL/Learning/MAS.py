@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import torch.optim as optim
 import time
 
-from XIL.Learning.LearnerStep import Basic
+from CXIL.Learning.LearnerStep import Basic
 from torch.utils.data import DataLoader
 #end of imports
 #

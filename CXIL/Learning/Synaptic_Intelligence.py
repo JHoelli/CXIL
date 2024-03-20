@@ -8,7 +8,7 @@ import numpy as np
 import random
 from torch.utils.data import DataLoader
 from torch.utils.data import TensorDataset
-from XIL.Learning.StoragePolicies import ClassBalancedBuffer
+from CXIL.Learning.StoragePolicies import ClassBalancedBuffer
 from avalanche.training.utils import get_layers_and_params
 from torch.nn.modules.batchnorm import _NormBase
 import torch
@@ -17,8 +17,8 @@ from torch import nn
 from torch.nn import functional as F
 from torch.autograd import Variable
 import torch.utils.data
-from XIL.Learning.StoragePolicies import ReservoirSamplingBuffer
-from XIL.Learning.LearnerStep import Basic
+from CXIL.Learning.StoragePolicies import ReservoirSamplingBuffer
+from CXIL.Learning.LearnerStep import Basic
 
 # Inspired by https://github.com/ContinualAI/avalanche/blob/master/avalanche/training/plugins/synaptic_intelligence.py 
 # USED TO BE CLOCK https://github.com/ContinualAI/avalanche/blob/b225d825181df0f8a941fce51a18fef4f193150e/avalanche/training/plugins/clock.py#L14 

@@ -1,4 +1,4 @@
-from . import Benchmarking, caipi, Learning, rrr, XIL, Data, Interactive, Models
+from . import Benchmarking, caipi, Learning, rrr, CXIL, Data, Interactive, Models
 from .__version__ import __version__
 
 __all__ = [
@@ -6,7 +6,7 @@ __all__ = [
     "caipi",
     "Learning",
     "rrr", 
-    "XIL",
+    "CXIL",
     "Data", 
     "Interactive", 
     "Models"

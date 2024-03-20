@@ -106,8 +106,8 @@ def train_VAE(loader,loaded_critic,loaded_gen,Z_DIM = 100,lr=1e-4, num_epochs=10
         #save_noise = torch.randn(batch_size, Z_DIM, 1, 1)#.to(device)
         #sample_8x8 = loaded_gen(save_noise).reshape(-1,1,28,28)
         #filepath = (f"./{epoch+20}.png")
-        torch.save(loaded_gen.state_dict(), "./XIL/Learning/models/MNIST/gen.pth")
-        torch.save(loaded_critic.state_dict(), "./XIL/Learning/models/MNIST/critic.pth" )
+        torch.save(loaded_gen.state_dict(), "./CXIL/Learning/models/MNIST/gen.pth")
+        torch.save(loaded_critic.state_dict(), "./CXIL/Learning/models/MNIST/critic.pth" )
 
 
 

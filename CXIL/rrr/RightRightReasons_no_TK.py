@@ -8,12 +8,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 from torch.utils.data import DataLoader
 from torch.utils.data import TensorDataset
-from XIL.XIL import XILInterface
-from XIL.Learning.LearnerStep import RRR_Learner
+from CXIL.CXIL import CXILInterface
+from CXIL.Learning.LearnerStep import RRR_Learner
 import time
 import pandas as pd
 
-class RRR(XILInterface):
+class RRR(CXILInterface):
 
     def __init__(self, model, learn,gradient_method=InputXGradient, test_data=(None, None), simulation_logic= None,only_interact_current=False,silent=2) -> None:
         super(RRR, self).__init__(model,learn, gradient_method, test_data, simulation_logic,silent)
@@ -43,7 +43,7 @@ class RRR(XILInterface):
 
             return self.simulation_logic(x,np.argmax(y),exp)
         else: 
-            from XIL.Interactive.BasicUi  import MainWindow   
+            from CXIL.Interactive.BasicUi  import MainWindow   
             import sys 
             from PySide2.QtWidgets import QApplication
             if not QApplication.instance():

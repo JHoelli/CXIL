@@ -2,7 +2,7 @@
 import timeit
 from typing import List
 import pandas as pd
-from XIL.Benchmarking.Evaluation import Evaluation
+from CXIL.Benchmarking.Evaluation import Evaluation
 class Benchmark:
     """
     The benchmarking class contains all measurements.

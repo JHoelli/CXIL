@@ -2,7 +2,7 @@
 #from turtle import pd
 from sklearn.metrics import  accuracy_score, f1_score , recall_score, precision_score
 import numpy as np
-from XIL.Benchmarking.Evaluation import Evaluation
+from CXIL.Benchmarking.Evaluation import Evaluation
 import pandas as pd
 import torch
 
