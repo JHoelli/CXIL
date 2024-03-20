@@ -30,18 +30,6 @@ class simulation(ABC):
     '''
     def __init__(self):
         parse_images
-
-    #TODO Not Necessary Anymore ? 
-    #def update_original_labels(self,original_labels=None):
-    #    self.original_labels=original_labels
-    #    self.counter=-1
-
-    #def update_meta(self,meta=None,input=None):
-    #    self.counter=-1
-    #    print('Counter', self.counter)
-    #    self.meta=meta
-    #    self.input=input
-
     @abstractmethod
     def get_ground_truth(self,x):
         pass
@@ -182,9 +170,6 @@ class synthetic_tabular(simulation):
         self.redundant=n_redundant
         self.repeated=n_repeated
         self.index= n_informative + n_repeated +n_redundant
-        #print('Num Uninformative Features ',self.index)
-        #TODO How to make this more elegant ?
-        #self.original_labels=original_labels
         self.counter=0
         self.x,self.y=data
         self.x= torch.from_numpy(self.x).float().detach().numpy()
@@ -200,16 +185,7 @@ class synthetic_tabular(simulation):
         return mask
     
     def find_rows(self, target):
-        source =  self.x#np.round(self.x.astype(float),decimals=5)#np.round(self.x,decimals=5)
-        #target = np.round(target.astype(float),decimals=5)
-        #print('FIND ROW', source.shape)
-        #print('Target', target.shape)
-        #print(target)
-        #print(source)
-        #print(type(source))
-        #print(type(target))
-        #print(source == target.reshape(-1))
-        #print(np.where((source == target).all(axis=1)))
+        source =  self.x
         return np.where((source == target.reshape(-1)).all(axis=1))[0]
     
     def simulate(self,img, label, importance):
@@ -222,17 +198,9 @@ class synthetic_tabular(simulation):
         if not isinstance(img, np.ndarray):
             img=img.detach().numpy()
         attribution = np.zeros_like(np.array(img).reshape(-1))
-        #print('attribution ', attribution)
-        #print('img',img.shape)
         mask= np.zeros_like(np.array(img))
-        #print('mask ', len(mask.shape))
-       
-        #print(mask)
         ind=self.find_rows( img)
-        #print('index from find rows', ind)
         label_true= self.y[ind]
-        #print('label true', label_true)
-        #print('label from model', label)
         if label_true[0] != label: 
             return label_true, attribution
         if not self.class_mode:
@@ -242,36 +210,24 @@ class synthetic_tabular(simulation):
                 mask[:self.index]=1
             importance=np.array(importance)
             importance = np.abs(importance)
-            #print('importance number', importance)
             n=np.count_nonzero(mask)
             indices = np.argpartition(importance, -n)[-n:]
-            #print('top X',indices)
             indicies_mask = np.where(mask.reshape(-1) != 0 )[0] 
-            #print(indicies_mask)
             a,_,_= np.intersect1d(indices, indicies_mask, return_indices=True)
             indicies_to_change =indices[np.isin(indices,a,invert=True)]
-            #print('indicies_to_change ',indicies_to_change)
             attribution[indicies_to_change]=1       
-            #print(attribution)
         else: 
-            #TODO THIS IS TO BE TESTED / DEBUGED
-
             if len(mask.shape)==2:
                 mask[:,label_true[0]]=1
             elif len(mask.shape)==1:
                 mask[label_true[0]]=1
-            #mask[:,label_true[0]]
             importance=np.array(importance)
             importance = np.abs(importance)
-            #print('importance number', importance)
             n=np.count_nonzero(mask)
             indices = np.argpartition(importance, -n)[-n:]
-            #print('top X',indices)
             indicies_mask = np.where(mask.reshape(-1) != 0 )[0] 
-            #print(indicies_mask)
             a,_,_= np.intersect1d(indices, indicies_mask, return_indices=True)
             indicies_to_change =indices[np.isin(indices,a,invert=True)]
-            #print('indicies_to_change ',indicies_to_change)
             attribution[indicies_to_change]=1
 
         
@@ -367,10 +323,6 @@ def diabetis_regression_data():
 
 
 def find_rows(source, target):
-    print('FIND ROW', source.shape)
-    print('Target', target.shape)
-    print(source == target.reshape(-1))
-    print(np.where((source == target.reshape(-1)).all(axis=1)))
     return np.where((source == target.reshape(-1)).all(axis=1))[0]
 
 
@@ -384,52 +336,6 @@ class decoy_mnist_rule(simulation):
     def __init__(self, data):
         self.x, self.y=data
         
-
-    '''
-    def simulate(self, img, label, importance):
-        
-        Rule to ignore corners!
-         orgim=img
-        if torch.is_tensor(img):
-            img = img.detach().numpy()
-        img = img.copy()
-        img=img.reshape(28, 28)
-        attr = np.zeros_like(img)
-        # TODO FIND IMAGE IN DATA:
-        inde=find_rows(self.x.reshape(-1,28*28),img.reshape(-1))#np.where(img.reshape(-1)==self.x.reshape(-1,28*28))
-        #print('index',inde)
-        
-
-        y= self.y[inde]
-        print(y)
-        #import sys 
-        #sys.exit(1)
-
-        if label != y[0]:
-            print('Returns Label 1', y )
-            return y,  attr.reshape(-1)
-
-        importance=importance.reshape(28,28)
-        importance = np.abs(importance)
-        #print(importance)
-        #TODO TOP N or in general all >0 ?
-        n=16
-
-        indices = np.unravel_index(np.argsort(importance.ravel())[-n:], importance.shape)
-        fwd = [0,1,2,3]
-        rev = [-1,-2,-3,-4]
-        for i in fwd:
-            for j in rev:
-                # TODO Only if indicies in top 16? 
-                if i in indices[0] and j in indices[1]:
-                    attr[i][j] = 1
-        #print('Attribution ',attr)
-        #print(orgim.shape)
-        #print('Returns Label 2', label )
-        #import sys 
-        #sys.exit(1)
-        return label,  attr.reshape(orgim.shape)
-    '''
     def simulate(self, img, label, importance):
         '''
         Rule to ignore corners!
@@ -448,35 +354,21 @@ class decoy_mnist_rule(simulation):
         y= self.y[inde]
 
         if label != y[0]:
-            print('SIM New Label', label)
             return y,  attr.reshape(-1)
 
         importance=importance.reshape(28,28)
         importance = np.abs(importance)
         n=np.count_nonzero(img)-25
-        #200
-        #with open('importance.npy', 'wb') as f:
-        #    np.save(f,importance)
-        #with open('image.npy', 'wb') as f:
-        #    np.save(f,img)
-        #print(importance)
 
         indices = np.unravel_index(np.argsort(importance.ravel())[-n:], importance.shape)
-        #print(indices)
-
         fwd = [0,1,2,3,24,25,26,27]
         rev = [0,1,2,3,24,25,26,27]
         for i in fwd:
             for j in rev:
-                # TODO Only if indicies in top 16? 
 
                 if i in indices[0] and j in indices[1]:
                     if img[i,j]>0:
                         attr[i][j] = 1
-        
-        #print('SIM attribution', np.where(attr!=0))
-        #import sys
-        #sys.exit(1)
         return label,  attr.reshape(orgim.shape)
     
     def get_ground_truth(self, x, decoy= False):
@@ -509,16 +401,12 @@ class mnist_rule(simulation):
     
     def __init__(self, data):
         self.x, self.y=data
-        #self.i=0
-        
 
 
     def simulate(self, img, label, importance):
         '''
         Rule to ignore corners!
         '''
-        #np.save(f'importance_{self.i}.npy',importance)
-        #np.save(f'img_{self.i}.npy',img)
         orgim=img
  
         if torch.is_tensor(img):
@@ -526,54 +414,24 @@ class mnist_rule(simulation):
         img = img.copy()
         img=img.reshape(28*28)
         attr = np.zeros_like(img)
-        # TODO FIND IMAGE IN DATA:
-        inde=find_rows(self.x.reshape(-1,28*28),img.reshape(-1))#np.where(img.reshape(-1)==self.x.reshape(-1,28*28))
-        #print('index',inde)
-        # GET LABEL 
+        inde=find_rows(self.x.reshape(-1,28*28),img.reshape(-1))#np.where(img.reshape(-1)==self.x.reshape(-1,28*28)) 
         y= self.y[inde]
-        # COMPARE LABEL
-        print('label',label)
-        print('original',y[0])
         if label != y[0]:
-            #print('Take Label')
-            #import sys 
-            #sys.exit(1)
             return y,  attr.reshape(-1)
 
         importance=importance.reshape(28*28)
         importance = np.abs(importance)
-        
-    
         n=len(img[img!=0])
-        #print('N',n)
         indices = np.argpartition(importance, -n)[-n:]
-        #print(importance[indices])
-        #print(indices)
         for a in indices:
-            #print(img[a])
             if img[a]== 0:
                 attr[a] = 1
-        #np.save(f'attr_{self.i}.npy',attr)
-        #self.i+=1
-        #print('New Attribution')
-        #import sys 
-        #sys.exit(1)
+
         return label,  attr.reshape(orgim.shape)
     
     def get_ground_truth(self, x):
         print('No GT available')
-        #print(x.shape)
-        #attr= np.zeros_like(x) 
-        ##print(attr.shape)
-        #attr[x!=0]=1
-        #fwd = [0,1,2,3]
-        #rev = [-1,-2,-3,-4]
-        #for i in fwd:
-        #    for j in rev:
-        #        for h in range(0, len(attr)):
-        #            attr[h][0][i][j] = 0
-    
-        #return attr #np.repeat(attr, len(x))
+
 
 def split_decoy_mnist():
     '''
