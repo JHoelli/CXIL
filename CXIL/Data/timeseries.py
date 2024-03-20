@@ -1,5 +1,5 @@
 import numpy as np
-import timesynth as ts
+#import timesynth as ts
 
 def generateNewSample(dataGenerationProcess, sampler="irregular", NumTimeSteps=50, NumFeatures=50):
     '''
