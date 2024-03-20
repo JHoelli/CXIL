@@ -12,4 +12,7 @@ pip install .
 ## Usage 
 
 ## Rerun the Experiments
-
+To replicate the paper results, please follow the three steps below. 
+### Generate the Data 
+### Run the Experiments
+### Evaluate 
