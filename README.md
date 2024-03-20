@@ -10,6 +10,8 @@ pip install .
 ```
 
 ## Usage 
+The Basic Usage of CXIL can be found in  this (notebook)[].
+
 
 ## Rerun the Experiments
 To replicate the paper results, please follow the three steps below. 
