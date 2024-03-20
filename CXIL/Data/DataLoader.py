@@ -1084,8 +1084,6 @@ def load_data_and_sim(name='toy_classification',cnn_mode=False,**kwargs):
         (np.array,np.array,np.array,np.array,np.array,np.array,func): Data Split into X,y, X_train,y_train, X_test,y_test, Rule
     '''
     root=Path(__file__).parent.parent
-    print(root)
-
     if name == 'toy_classification':
         data =np.load (f'{root}/Data/data/new_toy-colors.npz')
      
@@ -1130,8 +1128,6 @@ def load_data_and_sim(name='toy_classification',cnn_mode=False,**kwargs):
         return mnist()
     elif name == 'unsplit_mnist':
         return unsplit_mnist()
-    elif name =='iris_cancer':
-        return iris_cancer()
     elif'continous_tabular' in name: 
         print('Continous Tabular')
         return synthetic_tabular_classification(n_samples=10000, n_features=15, n_informative=10, n_redundant=0,n_classes=10,taskwise=True)
@@ -1145,14 +1141,6 @@ def load_data_and_sim(name='toy_classification',cnn_mode=False,**kwargs):
         
     elif 'Simulated' in name:
         return timeseries_loader(root,name,**kwargs)
-    elif 'clevr' in name:
-        return clevr_xai()
-        #Continous Time Series 
-    elif 'RBF' in name:
-        # Concept Drift
-        pass
-    elif 'lego' in name: 
-        return load_lego(root)
 
 
     # INDUSTRIAL DATASETS 
