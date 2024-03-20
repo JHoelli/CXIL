@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class CCXILInterface(ABC):
+class CXILInterface(ABC):
     def __init__(self, model,learn,gradient_method,evaluate_data=(None,None), simulation_logic = None,silent=0,data_type='img'):
         '''
         model: fit function
